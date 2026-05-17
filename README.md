@@ -1,6 +1,6 @@
 # Claude Accessibility Skills
 
-A collection of Claude skills for automated web accessibility auditing. Each skill gives Claude the ability to perform a specific type of accessibility check — producing visual reports, annotated screenshots, and structured summaries.
+A collection of Claude skills for automated web accessibility auditing. Each skill gives Claude the ability to perform a specific type of accessibility check — producing visual heatmaps, annotated screenshots, and structured reports.
 
 ## What are Claude Skills?
 
@@ -10,13 +10,16 @@ Skills are instructions bundled with helper scripts that extend what Claude can 
 
 | Skill | WCAG Coverage | What It Produces |
 |-------|--------------|-----------------|
-| [wcag-keyboard](skills/wcag-keyboard/) | 2.1.1 · 2.1.2 · 2.1.4 | Tab-order heatmap images (desktop + mobile), keyboard flow diagram, summary report |
+| [wcag-keyboard](skills/wcag-keyboard/) | 2.1.1 · 2.1.2 · 2.1.4 | Tab-order heatmap (desktop + mobile), keyboard flow diagram, summary report |
+| [wcag-touch-targets](skills/wcag-touch-targets/) | 2.5.5 · 2.5.8 | Color-coded size heatmap showing every interactive element (green/yellow/red) |
+| [wcag-focus-indicators](skills/wcag-focus-indicators/) | 2.4.7 · 2.4.11 | Contact sheet of every focusable element in its focused state |
+| [wcag-color-contrast](skills/wcag-color-contrast/) | 1.4.3 · 1.4.6 | Annotated screenshot with contrast ratio badges on failing text |
 
 ---
 
 ## wcag-keyboard
 
-Audits keyboard accessibility by mapping the full tab order of any webpage and generating annotated heatmap images.
+Maps the full keyboard tab order and generates a heatmap showing tab stops, flow arrows, and elements missing from the tab order.
 
 **Example output — [jecture.co](https://jecture.co) homepage:**
 
@@ -24,17 +27,43 @@ Audits keyboard accessibility by mapping the full tab order of any webpage and g
 |-----------------|----------------|
 | ![Desktop heatmap](examples/jecture-co/desktop_heatmap.png) | ![Mobile heatmap](examples/jecture-co/mobile_heatmap.png) |
 
-**Reading the heatmap:**
-- **Yellow circles with numbers** — focusable elements in tab order
-- **Blue arrows** — keyboard flow direction between tab stops
-- **Red boxes** — elements that should be keyboard-accessible but aren't reachable via Tab
-
 **Example prompts:**
 - *"Audit the keyboard accessibility of https://example.com"*
 - *"Check WCAG 2.1 keyboard access on localhost:3000 and show me the tab order"*
-- *"Run a keyboard accessibility heatmap on the mobile view of this page"*
 
-See [skills/wcag-keyboard/README.md](skills/wcag-keyboard/README.md) for full details.
+---
+
+## wcag-touch-targets
+
+Checks whether interactive elements meet WCAG minimum tap target sizes. Critical for mobile usability and users with motor disabilities.
+
+**Color coding:** Green = AAA pass (>=44x44px) · Yellow = AA pass (>=24x24px) · Red = fails minimum size
+
+**Example prompts:**
+- *"Check if the buttons on this page are large enough to tap on mobile"*
+- *"Run a WCAG 2.5 touch target audit on https://example.com"*
+
+---
+
+## wcag-focus-indicators
+
+Photographs every focusable element in its focused state using pixel-diff detection, then assembles a contact sheet for visual review.
+
+**Color coding:** Green border = focus visible · Red border = no focus indicator detected
+
+**Example prompts:**
+- *"Check if all interactive elements have visible focus rings on https://example.com"*
+- *"Find elements where outline:none removed the focus indicator"*
+
+---
+
+## wcag-color-contrast
+
+Scans all visible text, calculates WCAG contrast ratios against computed backgrounds, and marks failures with ratio badges on the screenshot.
+
+**Example prompts:**
+- *"Check the color contrast on https://example.com"*
+- *"Find all text that fails WCAG 1.4.3 on this page"*
 
 ---
 
@@ -45,7 +74,7 @@ Before using any skill in this collection you need:
 1. **Claude desktop app** — [claude.ai/download](https://claude.ai/download)
 2. **Claude in Chrome extension** — Required for browser automation. Install from the Chrome Web Store, then connect it to Claude via Settings → Extensions.
 3. **Python 3.9+** with these packages:
-   ```
+   ```bash
    pip install pillow playwright
    python -m playwright install chromium
    ```
@@ -64,21 +93,23 @@ Then in Claude settings (Settings → Skills → Add skill folder), add the `ski
 
 ### Option 2 — Copy an individual skill
 
-Copy the skill folder (e.g. `skills/wcag-keyboard/`) anywhere on your machine, then add that folder path to Claude's skill settings.
+Copy any skill folder (e.g. `skills/wcag-keyboard/`) anywhere on your machine, then add that folder path to Claude's skill settings.
 
 ---
 
 ## Using a Skill
 
-Once installed, just describe what you want in a Claude conversation. Examples:
+Once installed, just describe what you want in a Claude conversation:
 
 > *"Can you audit the keyboard accessibility of https://mysite.com?"*
 
-> *"I want to see the tab order on localhost:8080 — desktop and mobile views"*
+> *"Check touch target sizes on localhost:8080 — desktop and mobile"*
 
-> *"Check if there are any keyboard traps on this page"*
+> *"Find any text with low contrast on this page"*
 
-Claude will pick up the relevant skill, navigate to the URL using the Chrome extension, run the analysis, generate the visual report, and share the results in your conversation.
+> *"Are there any missing focus indicators on this site?"*
+
+Claude picks up the relevant skill, navigates to the URL using the Chrome extension, runs the analysis, generates the visual report, and shares everything in your conversation.
 
 ---
 
@@ -87,12 +118,30 @@ Claude will pick up the relevant skill, navigate to the URL using the Chrome ext
 ```
 claude-accessibility-skills/
 ├── skills/
-│   └── wcag-keyboard/
-│       ├── SKILL.md          # Skill instructions (loaded by Claude)
-│       ├── README.md         # Human-readable documentation
+│   ├── wcag-keyboard/
+│   │   ├── SKILL.md
+│   │   ├── README.md
+│   │   └── scripts/
+│   │       ├── heatmap.py
+│   │       └── capture.py
+│   ├── wcag-touch-targets/
+│   │   ├── SKILL.md
+│   │   ├── README.md
+│   │   └── scripts/
+│   │       ├── capture.py
+│   │       └── target_heatmap.py
+│   ├── wcag-focus-indicators/
+│   │   ├── SKILL.md
+│   │   ├── README.md
+│   │   └── scripts/
+│   │       ├── capture_focus.py
+│   │       └── contact_sheet.py
+│   └── wcag-color-contrast/
+│       ├── SKILL.md
+│       ├── README.md
 │       └── scripts/
-│           ├── heatmap.py    # Annotated image generator
-│           └── capture.py    # Full-page screenshot via Playwright
+│           ├── capture.py
+│           └── contrast_overlay.py
 ├── examples/
 │   └── jecture-co/
 │       ├── desktop_heatmap.png
