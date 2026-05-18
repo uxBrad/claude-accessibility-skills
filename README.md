@@ -10,6 +10,7 @@ Skills are instructions bundled with helper scripts that extend what Claude can 
 
 | Skill | WCAG Coverage | What It Produces |
 |-------|--------------|-----------------|
+| [**wcag-full-audit**](skills/wcag-full-audit/) | All 11 criteria | **PDF report + CSV** — runs every skill in one pass, verdicts on every finding |
 | [wcag-keyboard](skills/wcag-keyboard/) | 2.1.1 · 2.1.2 · 2.1.4 | Tab-order heatmap (desktop + mobile), keyboard flow diagram |
 | [wcag-touch-targets](skills/wcag-touch-targets/) | 2.5.5 · 2.5.8 | Color-coded size heatmap of every interactive element |
 | [wcag-focus-indicators](skills/wcag-focus-indicators/) | 2.4.7 · 2.4.11 | Contact sheet of every focusable element in its focused state |
@@ -124,6 +125,7 @@ Once installed, just describe what you want in a Claude conversation:
 > *"Check all form labels on the checkout page"*
 > *"Show me the landmark structure"*
 > *"Does this page reflow at 320px?"*
+> *"Run a full accessibility audit on https://mysite.com and give me a PDF"*
 
 ---
 
@@ -136,6 +138,7 @@ claude-accessibility-skills/
 │   ├── wcag-touch-targets/
 │   ├── wcag-focus-indicators/
 │   ├── wcag-color-contrast/
+│   ├── wcag-full-audit/
 │   ├── wcag-headings/
 │   ├── wcag-images/
 │   ├── wcag-links/
