@@ -48,9 +48,9 @@ Skills are instructions bundled with helper scripts that extend what Claude can 
 | ![Heading overlay](examples/jecture-co/headings/desktop_headings.png) | ![Heading outline](examples/jecture-co/headings/heading_outline.png) |
 
 ### wcag-images
-| Desktop contact sheet |
-|----------------------|
-| ![Image alt text sheet](examples/jecture-co/images/desktop_image_sheet.png) |
+| Desktop contact sheet | Mobile contact sheet |
+|----------------------|---------------------|
+| ![Desktop image alt text sheet](examples/jecture-co/images/desktop_image_sheet.png) | ![Mobile image alt text sheet](examples/jecture-co/images/mobile_image_sheet.png) |
 
 ### wcag-links
 | Desktop (1280px) | Mobile (390px) |

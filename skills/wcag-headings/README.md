@@ -75,3 +75,11 @@ python scripts/heading_tree.py \
 ```
 
 The second entry above would be flagged — H1 jumping directly to H3 skips a level.
+
+## Example output — jecture.co
+
+**Result:** 10 headings audited · 0 issues · clean H1 → H2 → H3 hierarchy throughout
+
+| Annotated screenshot | Heading outline |
+|---|---|
+| ![Desktop heading overlay](examples/jecture-co/desktop_headings.png) | ![Heading outline diagram](examples/jecture-co/heading_outline.png) |

@@ -82,3 +82,13 @@ The script will classify any links not already classified in the JSON.
 | Icon-only links | Add `aria-label="[Destination or action]"` to the `<a>` element |
 | "Click here" | Rewrite surrounding sentence so link text is naturally descriptive |
 | Raw URL as text | Replace with a human-readable description of the destination |
+
+## Example output — jecture.co
+
+**Result:** 22 links audited · 3 fail (empty — blog card image links with no text or aria-label) · 0 warn · 19 pass
+
+| Desktop audit | Mobile audit |
+|---|---|
+| ![Desktop link purpose audit](examples/jecture-co/desktop_links_audit.png) | ![Mobile link purpose audit](examples/jecture-co/mobile_links_audit.png) |
+
+The three failing links are `<a href="..."><img></a>` blog card thumbnail wrappers — they have no text content and no `aria-label`, making them invisible to screen readers navigating by links. Fix: add `aria-label="Read article: [title]"` to each anchor.

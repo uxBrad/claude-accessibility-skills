@@ -91,3 +91,11 @@ python scripts/image_sheet.py \
 - CSS background images are not captured (use DevTools to audit separately)
 - Lazy-loaded images that haven't entered the viewport may be missed — scroll the page before auditing or use `page.wait_for_timeout` after load
 - SVG images inline in HTML are partially supported via `role="img"` detection
+
+## Example output — jecture.co
+
+**Result:** 5 images audited · 1 good (logo with descriptive alt) · 4 decorative (empty alt, intentional) · 0 missing
+
+| Desktop contact sheet | Mobile contact sheet |
+|---|---|
+| ![Desktop image alt text audit](examples/jecture-co/desktop_image_sheet.png) | ![Mobile image alt text audit](examples/jecture-co/mobile_image_sheet.png) |
