@@ -9,6 +9,18 @@ Audits keyboard focus indicator visibility by photographing every focusable elem
 | 2.4.7 Focus Visible | AA | Every keyboard-operable UI has a visible focus indicator |
 | 2.4.11 Focus Appearance | AA (WCAG 2.2) | Focus indicator meets minimum size and contrast |
 
+## Example output — jecture.co homepage
+
+| Desktop (1280px) | Mobile (390px) |
+|-----------------|----------------|
+| ![Desktop focus contact sheet](../../examples/jecture-co/focus-indicators/desktop_focus_sheet.png) | ![Mobile focus contact sheet](../../examples/jecture-co/focus-indicators/mobile_focus_sheet.png) |
+
+**What this revealed on jecture.co:**
+- 20/22 desktop elements have a visible focus indicator (pass)
+- 19/22 mobile elements have a visible focus indicator (pass)
+- 2-3 elements errored during capture (off-screen or zero-height elements)
+- All high diff-scores (220+) — focus rings are strong and clearly visible
+
 ## What it produces
 
 - **Desktop contact sheet** and **Mobile contact sheet**
@@ -35,7 +47,7 @@ Elements with diff scores between 6-20 should be reviewed manually — they may 
 
 - *"Check if all interactive elements have visible focus indicators on https://example.com"*
 - *"Audit keyboard focus styles on localhost:8080"*
-- *"Find elements with outline:none that have no replacement focus style"*
+- *"Find elements where outline:none removed the focus indicator"*
 - *"Run a WCAG 2.4.7 focus visibility audit"*
 
 ## Requirements
@@ -70,26 +82,6 @@ python scripts/contact_sheet.py \
   --data      path/to/crops/focus_data.json \
   --output    path/to/contact_sheet.png \
   --label     "Desktop (1280px)"
-```
-
-### focus_data.json format
-
-```json
-[
-  {
-    "index":         0,
-    "tag":           "a",
-    "label":         "Skip to main content",
-    "abs_x":         20,
-    "abs_y":         10,
-    "w":             180,
-    "h":             24,
-    "status":        "pass",
-    "focus_visible": true,
-    "diff_score":    42.0,
-    "crop_file":     "focus_000.png"
-  }
-]
 ```
 
 ## Common issues

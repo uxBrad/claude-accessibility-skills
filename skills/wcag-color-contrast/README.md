@@ -11,6 +11,18 @@ Audits text color contrast ratios across a webpage and generates annotated scree
 
 **Large text** is defined as 18pt (24px) or larger, or 14pt (18.67px) bold or heavier.
 
+## Example output — jecture.co homepage
+
+| Desktop (1280px) | Mobile (390px) |
+|-----------------|----------------|
+| ![Desktop contrast audit](../../examples/jecture-co/color-contrast/desktop_contrast.png) | ![Mobile contrast audit](../../examples/jecture-co/color-contrast/mobile_contrast.png) |
+
+**What this revealed on jecture.co:**
+- 41 text elements scanned — 0 failures, strong overall contrast
+- 33/41 pass AAA (7:1 or 4.5:1 large) — excellent result
+- 8/41 pass AA only — these are the grey body text elements (rgb 75,85,99 on white = ~4.6:1) and blue badge text, just clearing the AA bar but not AAA
+- The dark section (white on navy #111827) scores very high contrast
+
 ## What it produces
 
 - **Desktop annotated screenshot** and **Mobile annotated screenshot**
@@ -50,27 +62,6 @@ python scripts/contrast_overlay.py \
 
 # Also show passing elements (for full picture):
 python scripts/contrast_overlay.py ... --show-passes
-```
-
-### text_elements.json format
-
-```json
-[
-  {
-    "tag":      "p",
-    "text":     "Sample paragraph text",
-    "fg":       [102, 102, 102],
-    "bg":       [255, 255, 255],
-    "fg_str":   "rgb(102, 102, 102)",
-    "bg_str":   "rgb(255, 255, 255)",
-    "fontSize": 16,
-    "isLarge":  false,
-    "x":        40,
-    "y":        280,
-    "w":        600,
-    "h":        24
-  }
-]
 ```
 
 ## Limitations

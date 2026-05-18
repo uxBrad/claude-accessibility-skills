@@ -9,6 +9,17 @@ Audits interactive element sizes against WCAG touch target requirements and gene
 | 2.5.8 Target Size (Minimum) | AA (WCAG 2.2) | At least 24x24 CSS pixels |
 | 2.5.5 Target Size | AAA | At least 44x44 CSS pixels |
 
+## Example output — jecture.co homepage
+
+| Desktop (1280px) | Mobile (390px) |
+|-----------------|----------------|
+| ![Desktop touch target heatmap](../../examples/jecture-co/touch-targets/desktop_targets.png) | ![Mobile touch target heatmap](../../examples/jecture-co/touch-targets/mobile_targets.png) |
+
+**What this revealed on jecture.co:**
+- 12/22 elements pass AAA (>=44x44px) — primary CTAs and article thumbnails are well-sized
+- 5/22 pass AA only — nav links at 30px height need 14px more to reach AAA
+- 5/22 fail — footer social links (Mastodon, Bluesky, Threads, Instagram) and "Let's Find Out." inline link are only 20-22px tall, below the 24px AA minimum
+
 ## What it produces
 
 - **Desktop heatmap** (1280px) and **Mobile heatmap** (390px)

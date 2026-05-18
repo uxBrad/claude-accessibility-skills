@@ -25,7 +25,7 @@ Maps the full keyboard tab order and generates a heatmap showing tab stops, flow
 
 | Desktop (1280px) | Mobile (390px) |
 |-----------------|----------------|
-| ![Desktop heatmap](examples/jecture-co/desktop_heatmap.png) | ![Mobile heatmap](examples/jecture-co/mobile_heatmap.png) |
+| ![Desktop keyboard heatmap](examples/jecture-co/desktop_heatmap.png) | ![Mobile keyboard heatmap](examples/jecture-co/mobile_heatmap.png) |
 
 **Example prompts:**
 - *"Audit the keyboard accessibility of https://example.com"*
@@ -39,6 +39,12 @@ Checks whether interactive elements meet WCAG minimum tap target sizes. Critical
 
 **Color coding:** Green = AAA pass (>=44x44px) · Yellow = AA pass (>=24x24px) · Red = fails minimum size
 
+**Example output — [jecture.co](https://jecture.co) homepage:**
+
+| Desktop (1280px) | Mobile (390px) |
+|-----------------|----------------|
+| ![Desktop touch target heatmap](examples/jecture-co/touch-targets/desktop_targets.png) | ![Mobile touch target heatmap](examples/jecture-co/touch-targets/mobile_targets.png) |
+
 **Example prompts:**
 - *"Check if the buttons on this page are large enough to tap on mobile"*
 - *"Run a WCAG 2.5 touch target audit on https://example.com"*
@@ -51,6 +57,12 @@ Photographs every focusable element in its focused state using pixel-diff detect
 
 **Color coding:** Green border = focus visible · Red border = no focus indicator detected
 
+**Example output — [jecture.co](https://jecture.co) homepage:**
+
+| Desktop (1280px) | Mobile (390px) |
+|-----------------|----------------|
+| ![Desktop focus contact sheet](examples/jecture-co/focus-indicators/desktop_focus_sheet.png) | ![Mobile focus contact sheet](examples/jecture-co/focus-indicators/mobile_focus_sheet.png) |
+
 **Example prompts:**
 - *"Check if all interactive elements have visible focus rings on https://example.com"*
 - *"Find elements where outline:none removed the focus indicator"*
@@ -60,6 +72,12 @@ Photographs every focusable element in its focused state using pixel-diff detect
 ## wcag-color-contrast
 
 Scans all visible text, calculates WCAG contrast ratios against computed backgrounds, and marks failures with ratio badges on the screenshot.
+
+**Example output — [jecture.co](https://jecture.co) homepage:**
+
+| Desktop (1280px) | Mobile (390px) |
+|-----------------|----------------|
+| ![Desktop contrast audit](examples/jecture-co/color-contrast/desktop_contrast.png) | ![Mobile contrast audit](examples/jecture-co/color-contrast/mobile_contrast.png) |
 
 **Example prompts:**
 - *"Check the color contrast on https://example.com"*
@@ -145,7 +163,16 @@ claude-accessibility-skills/
 ├── examples/
 │   └── jecture-co/
 │       ├── desktop_heatmap.png
-│       └── mobile_heatmap.png
+│       ├── mobile_heatmap.png
+│       ├── touch-targets/
+│       │   ├── desktop_targets.png
+│       │   └── mobile_targets.png
+│       ├── focus-indicators/
+│       │   ├── desktop_focus_sheet.png
+│       │   └── mobile_focus_sheet.png
+│       └── color-contrast/
+│           ├── desktop_contrast.png
+│           └── mobile_contrast.png
 └── README.md
 ```
 
