@@ -17,6 +17,10 @@ Skills are instructions bundled with helper scripts that extend what Claude can 
 | [wcag-headings](skills/wcag-headings/) | 1.3.1 · 2.4.6 | Annotated screenshot + standalone outline diagram of heading hierarchy |
 | [wcag-images](skills/wcag-images/) | 1.1.1 | Contact sheet of every image with alt text shown and color-coded by quality |
 | [wcag-links](skills/wcag-links/) | 2.4.4 · 2.4.9 | Annotated screenshot with badges on vague or empty link text |
+| [wcag-text-spacing](skills/wcag-text-spacing/) | 1.4.12 | Side-by-side before/after comparison with WCAG spacing overrides applied |
+| [wcag-forms](skills/wcag-forms/) | 1.3.1 · 1.3.5 · 3.3.2 | Contact sheet of every form field with label status and autocomplete info |
+| [wcag-landmarks](skills/wcag-landmarks/) | 1.3.6 · 2.4.1 | Annotated screenshot with color-coded landmark region overlays |
+| [wcag-reflow](skills/wcag-reflow/) | 1.4.10 | Side-by-side comparison of full-width vs 320px (400% zoom equivalent) |
 
 ---
 
@@ -57,6 +61,26 @@ Skills are instructions bundled with helper scripts that extend what Claude can 
 |-----------------|----------------|
 | ![Desktop link audit](examples/jecture-co/links/desktop_links_audit.png) | ![Mobile link audit](examples/jecture-co/links/mobile_links_audit.png) |
 
+### wcag-text-spacing
+| Desktop (1280px) | Mobile (390px) |
+|-----------------|----------------|
+| ![Desktop text spacing audit](examples/jecture-co/text-spacing/desktop_spacing_audit.png) | ![Mobile text spacing audit](examples/jecture-co/text-spacing/mobile_spacing_audit.png) |
+
+### wcag-forms
+| Contact page form fields |
+|--------------------------|
+| ![Form fields audit](examples/jecture-co/forms/desktop_form_sheet.png) |
+
+### wcag-landmarks
+| Desktop (1280px) | Mobile (390px) |
+|-----------------|----------------|
+| ![Desktop landmark audit](examples/jecture-co/landmarks/desktop_landmarks_audit.png) | ![Mobile landmark audit](examples/jecture-co/landmarks/mobile_landmarks_audit.png) |
+
+### wcag-reflow
+| Desktop vs 320px comparison |
+|-----------------------------|
+| ![Reflow audit](examples/jecture-co/reflow/reflow_audit.png) |
+
 ---
 
 ## Requirements
@@ -96,6 +120,10 @@ Once installed, just describe what you want in a Claude conversation:
 > *"Show me the heading structure of this page"*
 > *"Check all images for missing alt text"*
 > *"Find any click here or read more links"*
+> *"Test text spacing on this page"*
+> *"Check all form labels on the checkout page"*
+> *"Show me the landmark structure"*
+> *"Does this page reflow at 320px?"*
 
 ---
 
@@ -110,7 +138,11 @@ claude-accessibility-skills/
 │   ├── wcag-color-contrast/
 │   ├── wcag-headings/
 │   ├── wcag-images/
-│   └── wcag-links/
+│   ├── wcag-links/
+│   ├── wcag-text-spacing/
+│   ├── wcag-forms/
+│   ├── wcag-landmarks/
+│   └── wcag-reflow/
 ├── examples/
 │   └── jecture-co/
 │       ├── desktop_heatmap.png
@@ -120,7 +152,11 @@ claude-accessibility-skills/
 │       ├── color-contrast/
 │       ├── headings/
 │       ├── images/
-│       └── links/
+│       ├── links/
+│       ├── text-spacing/
+│       ├── forms/
+│       ├── landmarks/
+│       └── reflow/
 └── README.md
 ```
 
